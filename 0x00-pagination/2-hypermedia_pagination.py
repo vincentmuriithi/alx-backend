@@ -8,8 +8,10 @@ index_range = __import__("0-simple_helper_function").index_range
 
 
 class Server:
-    """Server class to paginate a database of popular baby names.
     """
+    Server class to paginate a database of popular baby names.
+    """
+
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
@@ -26,6 +28,7 @@ class Server:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
             self.__dataset = dataset[1:]
+
         return self.__dataset
 
     @staticmethod
