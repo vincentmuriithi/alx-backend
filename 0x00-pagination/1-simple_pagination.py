@@ -2,14 +2,14 @@
 """
 Defines class Server that paginates a database of popular baby names
 """
-from typing import Tuple, List
 import csv
 import math
+from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
-     Takes 2 integer arguments and returns a tuple of size two
+    Takes 2 integer arguments and returns a tuple of size two
     containing the start and end index corresponding to the range of
     indexes to return in a list for those pagination parameters
     Args:
@@ -22,11 +22,12 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     for i in range(page):
         start = end
         end += page_size
+
     return (start, end)
 
+
 class Server:
-    """
-    Server class to paginate a database of popular baby names.
+    """Server class to paginate a database of popular baby names.
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
@@ -34,8 +35,7 @@ class Server:
         self.__dataset = None
 
     def dataset(self) -> List[List]:
-        """
-        Cached dataset
+        """Cached dataset
         """
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
@@ -45,20 +45,19 @@ class Server:
 
         return self.__dataset
 
-
-    def get_page(self, page: int=1,page_size: int=10) -> List[List]:
+    def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
         Takes 2 integer arguments and returns requested page from the dataset
-            Args:
-                page (int): required page number. must be a positive integer
-                page_size (int): number of records per page. must be a +ve integer
-            Return:
-                list of lists containing required data from the dataset
+        Args:
+            page (int): required page number. must be a positive integer
+            page_size (int): number of records per page. must be a +ve integer
+        Return:
+            list of lists containing required data from the dataset
         """
         assert type(page) is int and page > 0
         assert type(page_size) is int and page_size > 0
 
-        dataeset = self.dataset()
+        dataset = self.dataset()
         data_length = len(dataset)
         try:
             index = index_range(page, page_size)
